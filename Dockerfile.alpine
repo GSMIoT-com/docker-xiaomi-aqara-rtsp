@@ -1,0 +1,23 @@
+FROM python:3-alpine
+
+# set workdir
+WORKDIR /usr/src/app
+
+# copy code
+COPY videoP2Proxy /usr/src/app
+
+# install dependencies
+RUN apk update && apk add --no-cache autoconf automake gcc g++ live-media-dev json-c-dev
+
+# install python dependencies
+RUN pip3 install python-miio
+
+# build code
+RUN ./autogen.sh && make && make install
+
+# run code
+CMD videop2proxy --ip $IP --token $TOKEN --rtsp 8554
+
+# expose port
+EXPOSE 8554
+

@@ -4,13 +4,10 @@ FROM python:3-stretch
 WORKDIR /usr/src/app
 
 # install dependencies
-RUN apt-get update && apt-get -y dist-upgrade && \
-	apt-get -y install liblivemedia-dev libjson-c-dev
+RUN apt-get update && apt-get -y dist-upgrade && apt-get -y install liblivemedia-dev libjson-c-dev
 
 # cleanup
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
 # install python dependencies
 RUN pip3 install python-miio
