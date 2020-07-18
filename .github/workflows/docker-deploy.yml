@@ -2,7 +2,7 @@ name: Docker deploy
 
 on:
   push:
-    branches: elixir
+    branches: master
 
 jobs:
   buildx:
